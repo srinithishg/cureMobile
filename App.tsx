@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Dimensions,
+  LogBox,
   SafeAreaView,
   StatusBar,
   useColorScheme,
@@ -16,6 +17,7 @@ function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   const screenWidth = Dimensions.get('window').width;
 
+  LogBox.ignoreAllLogs();
   return (
     <NavigationContainer>
       <SafeAreaView
