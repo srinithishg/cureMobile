@@ -23,7 +23,7 @@ def add_guide():
     response = jsonify(message=processed_message.message)
     return response
 
-@app.route('/user')
+@app.route('/home')
 def hello():
     print("Entered")
     return '<h1>Hello, World!</h1>'
