@@ -65,6 +65,74 @@ class VitalsProcessor:
                 """
         },
         {
+            "input": "Can u get me the blood pressure of Vishal Kumar Sharma ",
+            "query": """SELECT REPLACE(TRIM(CONCAT(pd.given_name, ' ', pd.middle_name, ' ', pd.family_name)), '  ', ' ') AS patient_name, pd.age as patient_age,bpad.bed_number as patient_bed_number ,latest_v.systolic_blood_pressure,latest_v.diastolic_blood_pressure
+                        FROM person_details_default pd
+                        JOIN (
+                            SELECT v1.patient_id,v1.systolic_blood_pressure,v1.diastolic_blood_pressure
+                            FROM vitals v1
+                            JOIN (
+                                SELECT patient_id, MAX(obs_datetime) AS latest_timestamp
+                                FROM vitals
+                                GROUP BY patient_id
+                            ) v2 ON v1.patient_id = v2.patient_id AND v1.obs_datetime = v2.latest_timestamp
+                        ) AS latest_v ON pd.person_id = latest_v.patient_id
+                        LEFT JOIN bed_patient_assignment_default bpad  on bpad.patient_id=pd.person_id 
+                        WHERE REPLACE(TRIM(CONCAT(pd.given_name, ' ', pd.middle_name, ' ', pd.family_name)), '  ', ' ') ILIKE '%Vishal Kumar Sharma%';
+                """
+        },
+        {
+            "input": "Can u provide the BP of Vishal Kumar Sharma ",
+            "query": """SELECT REPLACE(TRIM(CONCAT(pd.given_name, ' ', pd.middle_name, ' ', pd.family_name)), '  ', ' ') AS patient_name, pd.age as patient_age,bpad.bed_number as patient_bed_number ,latest_v.systolic_blood_pressure,latest_v.diastolic_blood_pressure
+                        FROM person_details_default pd
+                        JOIN (
+                            SELECT v1.patient_id,v1.systolic_blood_pressure,v1.diastolic_blood_pressure
+                            FROM vitals v1
+                            JOIN (
+                                SELECT patient_id, MAX(obs_datetime) AS latest_timestamp
+                                FROM vitals
+                                GROUP BY patient_id
+                            ) v2 ON v1.patient_id = v2.patient_id AND v1.obs_datetime = v2.latest_timestamp
+                        ) AS latest_v ON pd.person_id = latest_v.patient_id
+                        LEFT JOIN bed_patient_assignment_default bpad  on bpad.patient_id=pd.person_id 
+                        WHERE REPLACE(TRIM(CONCAT(pd.given_name, ' ', pd.middle_name, ' ', pd.family_name)), '  ', ' ') ILIKE '%Vishal Kumar Sharma%';
+                """
+        },
+        {
+            "input": "Can u provide the Spo2 of Vishal Kumar Sharma ",
+            "query": """SELECT REPLACE(TRIM(CONCAT(pd.given_name, ' ', pd.middle_name, ' ', pd.family_name)), '  ', ' ') AS patient_name, pd.age as patient_age,bpad.bed_number as patient_bed_number ,latest_v.arterial_blood_oxygen_saturation_pulse_oximeter
+                        FROM person_details_default pd
+                        JOIN (
+                            SELECT v1.patient_id,v1.arterial_blood_oxygen_saturation_pulse_oximeter
+                            FROM vitals v1
+                            JOIN (
+                                SELECT patient_id, MAX(obs_datetime) AS latest_timestamp
+                                FROM vitals
+                                GROUP BY patient_id
+                            ) v2 ON v1.patient_id = v2.patient_id AND v1.obs_datetime = v2.latest_timestamp
+                        ) AS latest_v ON pd.person_id = latest_v.patient_id
+                        LEFT JOIN bed_patient_assignment_default bpad  on bpad.patient_id=pd.person_id 
+                        WHERE REPLACE(TRIM(CONCAT(pd.given_name, ' ', pd.middle_name, ' ', pd.family_name)), '  ', ' ') ILIKE '%Vishal Kumar Sharma%';
+                """
+        },
+        {
+            "input": "Can u provide the Oxygen Saturation of Vishal Kumar Sharma ",
+            "query": """SELECT REPLACE(TRIM(CONCAT(pd.given_name, ' ', pd.middle_name, ' ', pd.family_name)), '  ', ' ') AS patient_name, pd.age as patient_age,bpad.bed_number as patient_bed_number ,latest_v.arterial_blood_oxygen_saturation_pulse_oximeter
+                        FROM person_details_default pd
+                        JOIN (
+                            SELECT v1.patient_id,v1.arterial_blood_oxygen_saturation_pulse_oximeter
+                            FROM vitals v1
+                            JOIN (
+                                SELECT patient_id, MAX(obs_datetime) AS latest_timestamp
+                                FROM vitals
+                                GROUP BY patient_id
+                            ) v2 ON v1.patient_id = v2.patient_id AND v1.obs_datetime = v2.latest_timestamp
+                        ) AS latest_v ON pd.person_id = latest_v.patient_id
+                        LEFT JOIN bed_patient_assignment_default bpad  on bpad.patient_id=pd.person_id 
+                        WHERE REPLACE(TRIM(CONCAT(pd.given_name, ' ', pd.middle_name, ' ', pd.family_name)), '  ', ' ') ILIKE '%Vishal Kumar Sharma%';
+                """
+        },
+        {
             "input": "What are the vitals of Kishore Kumar ",
             "query": """SELECT REPLACE(TRIM(CONCAT(pd.given_name, ' ', pd.middle_name, ' ', pd.family_name)), '  ', ' ') AS patient_name, pd.age as patient_age,bpad.bed_number as patient_bed_number ,latest_v.*
                         FROM person_details_default pd

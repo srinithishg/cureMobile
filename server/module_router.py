@@ -33,6 +33,18 @@ class ModuleRouter:
             "module_key": "appointments"
         },
         {
+            "question": "How does my day look like ?",
+            "module_key": "appointments"
+        },
+        {
+            "question": "How does my week look like ?",
+            "module_key": "appointments"
+        },
+        {
+            "question": "What are my free time today ?",
+            "module_key": "appointments"
+        },
+        {
             "question": "diagnosis of karthick ?",
             "module_key": "diagnosis"
         },
@@ -96,6 +108,12 @@ class ModuleRouter:
             "rephrased_question":"Give me the appointments of patient Sindu Reddy"
         },
         {
+            "previous_question": "Get me the diagnosis of Sindu Reddy",
+            "previous_answer": "Sindu Reddy is the only patient available for the criteria of your question.\nPatient Name: Kennedy King\nPatient Age: 89\nPatient Bed Number: 49792\n\nVitals:\n- Temperature: 98\n- Heart Rate: 97\n- Respiratory Rate: 21\n- Systolic BP: 110\n- Diastolic BP: 90\n- Oxygen Saturation: 35\n- Position: Standing",
+            "current_question": "How does my day look like ?",
+            "rephrased_question":"How does my day look like ?"
+        },
+        {
             "previous_question": "Get my appointments for today ",
             "previous_answer": "- Appointment Details:\n   1. Patient ID: 49790\n      Patient Name: 52508\n      Provider: Test Doctor\n      Start Time: 2024-03-29 11:30\n      End Time: 2024-03-29 12:00\n      Department: Orthopaedics\n      Type: Surgery - Orthopaedics\n      Status: Scheduled\n      Location: CURE Ethiopia\n      Additional Notes: Scheduled\n\n(Note: This is today's appointment for Test Doctor)",
             "current_question": "Get me vital of patient in bed number ICU1",
@@ -119,6 +137,12 @@ class ModuleRouter:
             "current_question": "Kamal Haasan",
             "rephrased_question":"What are the vitals of Kamal Haasan"
         },
+        {
+            "previous_question": "Get me the diagnosis of Karthick",
+            "previous_answer": "Aah! There are more than one patient for your ask. \nPatient 1 - Name: Murali Karthick, Age: 31, Bed Number: ICU5\nPatient 2 - Name: Dinesh Karthick, Age: 34, Bed Number: B-1\n\nPlease specify for which patient you need the diagnosis.",
+            "current_question": "The one in ICU5 ",
+            "rephrased_question":"Give me the diagnosis of patient in bed ICU5"
+        }
         ]
         if input_message.previous_question is not None and input_message.previous_answer is not None:
             example_prompt = PromptTemplate.from_template(

@@ -55,7 +55,7 @@ class DiagnosisProcessor:
                         JOIN visit_diagnoses vd on vd.patient_id = pd.person_id
                         JOIN patient_visit_details_default pvdd on pvdd.visit_id=vd.visit_id
                         LEFT JOIN bed_patient_assignment_default bpad  on bpad.patient_id=pd.person_id 
-                        WHERE REPLACE(TRIM(CONCAT(pd.given_name, ' ', pd.middle_name, ' ', pd.family_name)), '  ', ' ') ILIKE '%Sharukh Khan%' and pvdd.visit_end_date IS NULL;
+                        WHERE REPLACE(TRIM(CONCAT(pd.given_name, ' ', pd.middle_name, ' ', pd.family_name)), '  ', ' ') ILIKE '%Sharukh Khan%' and bpad.date_stopped IS NULL and pvdd.visit_end_date IS NULL;
                 """
         },
         {
@@ -65,7 +65,7 @@ class DiagnosisProcessor:
                         JOIN visit_diagnoses vd on vd.patient_id = pd.person_id
                         JOIN patient_visit_details_default pvdd on pvdd.visit_id=vd.visit_id
                         LEFT JOIN bed_patient_assignment_default bpad  on bpad.patient_id=pd.person_id 
-                        WHERE REPLACE(TRIM(CONCAT(pd.given_name, ' ', pd.middle_name, ' ', pd.family_name)), '  ', ' ') ILIKE '%Sharukh Khan%' and pvdd.visit_end_date IS NULL;
+                        WHERE REPLACE(TRIM(CONCAT(pd.given_name, ' ', pd.middle_name, ' ', pd.family_name)), '  ', ' ') ILIKE '%Sharukh Khan%' and bpad.date_stopped IS NULL and pvdd.visit_end_date IS NULL;
                 """
         },
         {
@@ -75,7 +75,7 @@ class DiagnosisProcessor:
                         JOIN visit_diagnoses vd on vd.patient_id = pd.person_id
                         JOIN patient_visit_details_default pvdd on pvdd.visit_id=vd.visit_id
                         LEFT JOIN bed_patient_assignment_default bpad  on bpad.patient_id=pd.person_id 
-                        WHERE bpad.bed_number = 'ICU2' and pvdd.visit_end_date IS NULL;
+                        WHERE bpad.bed_number = 'ICU2'  and bpad.date_stopped IS NULL and pvdd.visit_end_date IS NULL;
                 """
         }
         ]

@@ -27,7 +27,7 @@ class AppointmentsProcessor:
             "query": """SELECT REPLACE(TRIM(CONCAT(pd.given_name, ' ', pd.middle_name, ' ', pd.family_name)), '  ', ' ') AS patient_name, pad.*
                         FROM person_details_default pd
 						JOIN patient_appointment_default pad ON pad.patient_id = pd.person_id
-                        WHERE REPLACE(TRIM(CONCAT(pd.given_name, ' ', pd.middle_name, ' ', pd.family_name)), '  ', ' ') ILIKE '%Manikandan%' limit 5 ;
+                        WHERE REPLACE(TRIM(CONCAT(pd.given_name, ' ', pd.middle_name, ' ', pd.family_name)), '  ', ' ') ILIKE '%Manikandan%' AND DATE(appointment_start_time) BETWEEN CURRENT_DATE AND CURRENT_DATE + INTERVAL '2 day' order by appointment_start_time limit 5 ;
                 """
         },
         {
@@ -35,7 +35,7 @@ class AppointmentsProcessor:
             "query": """SELECT *
                             FROM patient_appointment_default
                             WHERE appointment_provider = 'John Smith'
-                            AND DATE(appointment_start_time) = '2024-02-28' limit 5;
+                            AND DATE(appointment_start_time) = '2024-02-28' order by appointment_start_time  limit 5;
                 """
         },
                 {
@@ -43,7 +43,7 @@ class AppointmentsProcessor:
             "query": """SELECT *
                             FROM patient_appointment_default
                             WHERE appointment_provider = 'John Smith'
-                            AND DATE(appointment_start_time) BETWEEN CURRENT_DATE AND CURRENT_DATE + INTERVAL '2 day' limit 5;
+                            AND DATE(appointment_start_time) BETWEEN CURRENT_DATE AND CURRENT_DATE + INTERVAL '2 day' order by appointment_start_time  limit 5;
                 """
         },
         {
@@ -51,9 +51,25 @@ class AppointmentsProcessor:
             "query": """SELECT *
                             FROM patient_appointment_default
                             WHERE appointment_provider = 'John Smith'
-                            AND DATE(appointment_start_time) = CURRENT_DATE limit 5;
+                            AND DATE(appointment_start_time) = CURRENT_DATE order by appointment_start_time  limit 5;
                 """
-        }
+        },
+        {
+            "input": "I am a Provider Chatting with you and my name is John Smith. How does my day look like ?",
+            "query": """SELECT *
+                            FROM patient_appointment_default
+                            WHERE appointment_provider = 'John Smith'
+                            AND DATE(appointment_start_time) = CURRENT_DATE order by appointment_start_time limit 5;
+                """
+        },
+        {
+            "input": "I am a Provider Chatting with you and my name is John Smith. what are my free time today?",
+            "query": """SELECT *
+                            FROM patient_appointment_default
+                            WHERE appointment_provider = 'John Smith'
+                            AND DATE(appointment_start_time) = CURRENT_DATE  order by appointment_start_time  limit 5;
+                """
+        },
         ]
 
         example_prompt = PromptTemplate.from_template("User input: {input}\nSQL query: {query}")

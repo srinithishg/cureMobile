@@ -6,7 +6,7 @@ class GlobalProcessor:
     @staticmethod
     def process_message(input_message,refactored_message,llm):
         prompt = ChatPromptTemplate.from_messages([
-            ("system", "You are world class medical chat bot . Give answer not more than 50 words "),
+            ("system", "You are world class medical chat bot . Give answer not more than 100 words .Provide links wherever possible"),
             ("user", "{input}")
         ])
         chain = prompt | llm 
